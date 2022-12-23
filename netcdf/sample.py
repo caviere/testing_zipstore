@@ -10,9 +10,9 @@ bar_group = foo_group.createGroup("bar")
 
 dim = nc_file.createDimension('dim', 100)
 
-foo = nc_file.createVariable('foo', 'i4', ('dim', 'dim'), chunksizes=(10,10))
+foo = nc_file.createVariable('aaa', 'i4', ('dim', 'dim'), chunksizes=(10,10))
 
-bar = nc_file.createVariable('bar', 'i4', ('dim', 'dim'),chunksizes=(10,10))
+bar = nc_file.createVariable('bbbr', 'i4', ('dim', 'dim'),chunksizes=(10,10))
 
 foo[:,:] = 100
 
