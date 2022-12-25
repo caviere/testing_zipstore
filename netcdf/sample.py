@@ -1,30 +1,32 @@
 import netCDF4 as nc
 import xarray as xr
+import numpy as np
 import zarr
 
-
-nc_file = nc.Dataset('data.nc', 'w', format='NETCDF4')
-
-foo_group = nc_file.createGroup("foo")
-bar_group = nc_file.createGroup("bar")
-
-dim = nc_file.createDimension('dim', 10000)
-
-foo = nc_file.createVariable('aaa', 'i4', ('dim', 'dim'), chunksizes=(100,100))
-
-bar = nc_file.createVariable('bbb', 'i4', ('dim', 'dim'), chunksizes=(100, 100))
-
-foo[:,:] = 10000
-
-bar[:,:] = 10000
-
-nc_file.close()
-
-nc_file = xr.open_dataset('data.nc')
+nc_file = xr.Dataset(
+    data_vars={
+        'foo': (('dim', 'dim'), np.full((10000, 10000), 10000)),
+        'bar': (('dim', 'dim'), np.full((10000, 10000), 10000))
+    },
+    coords={
+        'dim': range(10000)
+    }
+)
 
 store = zarr.ZipStore('data.zip', mode='w')
 
-zarr = nc_file.to_zarr('data.zarr', store)
+encoding ={'foo': {'chunks': (100,100)}, 'bar': {'chunks': (100,100)}}
+
+zarr_group = nc_file.to_zarr(store, encoding=encoding)
+
+store.close()
+
+store = zarr.ZipStore('data.zip', mode='r')
+
+zarr_group = zarr.open_group(store)
+
+print(nc_file.foo)
 
 nc_file.close()
+
 store.close()
