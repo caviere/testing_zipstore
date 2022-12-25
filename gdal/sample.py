@@ -15,13 +15,13 @@ store = zarr.ZipStore('data.zip', mode='w')
 root = zarr.group(store)
 foo = root.create_group("foo")
 
-foo = foo.zeros('aaa', shape=(100, 100), chunks=(10, 10), dtype='i4')
+foo = foo.zeros('aaa', shape=(10000, 10000), chunks=(100, 100), dtype='i4')
 
-foo[:] = 100
+foo[:] = 10000
 store.close()
 
 ds = ogr.Open('data.zip')
-foo_ds = driver.Create("/foo/aaa", 100, 100, 1, ogr.GDT_Int32)
-foo_ds.WriteArray(np.ones((100, 100)))
+foo_ds = driver.Create("/foo/aaa", 10000, 10000, 1, ogr.GDT_Int32)
+foo_ds.WriteArray(np.ones((10000, 10000)))
 
 foo_ds = None
