@@ -8,8 +8,8 @@ store = zarr.ZipStore('data.zip', mode='w')
 root = zarr.group(store)
 foo = root.create_group("foo")
     
-foo = foo.zeros('aaa', shape=(100, 100), chunks=(10, 10), dtype='i4')
-foo[:] = 100
+foo = foo.zeros('aaa', shape=(10000, 10000), chunks=(100, 100), dtype='i4')
+foo[:] = 10000
 
 foo.flush()
 store.close()
