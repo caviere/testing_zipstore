@@ -10,17 +10,17 @@ root = zarr.group(store)
 foo = root.create_group("foo")
 bar = root.create_group("bar")
 
-foo = foo.zeros('aaa', shape=(100, 100), chunks=(10, 10), dtype='i4')
-bar = bar.zeros('bbb', shape=(100, 100), chunks=(10, 10), dtype='i4')
+foo = foo.zeros('aaa', shape=(10000, 10000), chunks=(100, 100), dtype='i4')
+bar = bar.zeros('bbb', shape=(10000, 10000), chunks=(100, 100), dtype='i4')
 
-foo[:] = 100
-bar[:] = 100
+foo[:] = 10000
+bar[:] = 10000
 
 store.close()
 
 if h5py.is_hdf5('data.zip'):
     
-    h5f = h5py.File('data.h5', 'w')
+    h5f = h5py.File('data.zip', 'w')
 
     foo_ds = h5f.create_dataset("foo/aaa", data=foo)
     bar_ds = h5f.create_dataset("bar/bbb", data=bar)
