@@ -5,10 +5,6 @@ import zarr
 
 
 driver = ogr.GetDriverByName('ZARR')
-
-if driver is None:
-    print("Error: Could not find the ZARR driver")
-    sys.exit()
     
 store = zarr.ZipStore('data.zip', mode='w')
 
