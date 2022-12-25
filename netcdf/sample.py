@@ -8,15 +8,15 @@ nc_file = nc.Dataset('data.nc', 'w', format='NETCDF4')
 foo_group = nc_file.createGroup("foo")
 bar_group = nc_file.createGroup("bar")
 
-dim = nc_file.createDimension('dim', 100)
+dim = nc_file.createDimension('dim', 10000)
 
-foo = nc_file.createVariable('aaa', 'i4', ('dim', 'dim'), chunksizes=(10,10))
+foo = nc_file.createVariable('aaa', 'i4', ('dim', 'dim'), chunksizes=(100,100))
 
-bar = nc_file.createVariable('bbb', 'i4', ('dim', 'dim'),chunksizes=(10,10))
+bar = nc_file.createVariable('bbb', 'i4', ('dim', 'dim'), chunksizes=(100, 100))
 
-foo[:,:] = 100
+foo[:,:] = 10000
 
-bar[:,:] = 100
+bar[:,:] = 10000
 
 nc_file.close()
 
