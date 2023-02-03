@@ -74,7 +74,7 @@ def main():
     # from url: https://zenodo.org/record/5745520#.Y8qxtBxByV4
     filepath = "datasets/ESP0025722.zip"
 
-    pen_zipstore_with_zarr(filepath)
+    open_zipstore_with_zarr(filepath)
 
     open_zipstore_with_xarray(filepath)
     
