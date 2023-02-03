@@ -35,20 +35,6 @@ def open_zipstore_with_netcdf4(filepath):
         print("open with netcdf4:", e)
 
 
-def open_zipstore_with_gdal(filepath):
-   
-    from osgeo import gdal
-
-    import os
-
-    try:
-        full_filepath = f'ZARR:"{os.path.abspath(filepath)}"'
-        ds = gdal.Open(full_filepath)
-        print("open with gdal:", "OK")
-    except Exception as e:
-        print("open with gdal:", e)
-
-
 def open_zipstore_with_h5py(filepath):
     import h5py
 
@@ -73,22 +59,32 @@ def open_zipstore_with_fsspec(filepath):
         print("open with fsspec(ZipStore):", e)
 
 
+
+def open_zipstore_with_gdal(filepath):
+    from osgeo import gdal
+
+    # full_filepath = f'ZARR:"{os.path.abspath(filepath)}"'
+
+    ds = gdal.OpenEx(f'ZARR:{filepath}', gdal.OF_MULTIDIM_RASTER)
+   
+    assert ds is not None
+
 def main():
 
     # from url: https://zenodo.org/record/5745520#.Y8qxtBxByV4
     filepath = "datasets/ESP0025722.zip"
 
-    open_zipstore_with_zarr(filepath)
+    pen_zipstore_with_zarr(filepath)
 
     open_zipstore_with_xarray(filepath)
     
     open_zipstore_with_netcdf4(filepath)
 
-    open_zipstore_with_gdal(filepath)
-
     open_zipstore_with_h5py(filepath)
 
     open_zipstore_with_fsspec(filepath)
+
+    open_zipstore_with_gdal(filepath)
 
 if __name__ == "__main__":
     main()
