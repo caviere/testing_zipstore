@@ -48,15 +48,15 @@ def open_zipstore_with_h5py(filepath):
 
 def open_zipstore_with_fsspec(filepath):
     import zarr.storage
-    from zarr.storage import ZipStore
 
     try:
         store = zarr.storage.FSStore(
-            url="", fs=ZipStore(path=filepath), mode="r"
+                url=f"zip::file://{filepath}",  mode="r"
         )
-        z = zarr.open(store=store, path=filepath)
+        # z = zarr.open(store=store, mode="r")
+        # print(z.info)
     except Exception as e:
-        print("open with fsspec(ZipStore):", e)
+        print("open with fsspec(zip):", e)
 
 
 
