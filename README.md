@@ -1,6 +1,6 @@
 # testing_zipstore
 
-The repository has scripts done for the zarr project [Testing the support and interoperability of Zarr ZipStore](https://www.outreachy.org/outreachy-december-2022-internship-round/) by me for Outreachy December 2022 cohort
+This repository has scripts done for the zarr project [Testing the support and interoperability of Zarr ZipStore](https://www.outreachy.org/outreachy-december-2022-internship-round/) by me for Outreachy December 2022 cohort
 
 # Outline
 
