@@ -20,6 +20,6 @@ This [script](https://github.com/caviere/testing_zipstore/blob/main/real%20%20wo
 | [Netcdf4](https://docs.unidata.ucar.edu/netcdf-c/current/) | No | No |
 | [Gdal](https://gdal.org/) | Yes | No |
 | [H5py](https://docs.h5py.org/en/stable/) | No | No |
-| [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/) | Yes | No |
+| [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/) | Yes | Yes |
 
 To read in detail about the work done and my time in outreachy, please visit [my website](https://caviere.github.io/) and have a read. Cheers!
